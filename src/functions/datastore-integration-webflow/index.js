@@ -281,6 +281,8 @@ function isPriceCorrect(comparable) {
   ) {
     return true;
   } else {
+    console.log(fxItem.price, iGet(wfItem, getCustomKey('price')));
+
     return parseFloat(fxItem.price) === parseFloat(iGet(wfItem, getCustomKey('price')));
   }
 }
