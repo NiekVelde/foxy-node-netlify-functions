@@ -72,6 +72,9 @@ async function handler(requestEvent) {
         }),
       ), Promise.resolve(values),
     );
+
+    console.log(values);
+
     let failed = findMismatch(values);
     if (!failed) {
       const outOfStock = outOfStockItems(values);
@@ -80,12 +83,15 @@ async function handler(requestEvent) {
       }
     }
     if (failed) {
+      console.log('FAILED: payment blocked', failed);
+
       return {
         body: JSON.stringify({ details: failed, ok: false, }),
         statusCode: 200,
       };
     } else {
-      console.log('OK: payment approved - no mismatch found')
+      console.log('OK: payment approved - no mismatch found');
+
       return {
         body: JSON.stringify({ details: '', ok: true, }),
         statusCode: 200,
